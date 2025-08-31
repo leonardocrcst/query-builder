@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Leonardocrcst\Tests;
 
-use QueryBuilder\QueryBuilder;
+use Leonardocrcst\QueryBuilder\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 
 class QueryBuilderTest extends TestCase

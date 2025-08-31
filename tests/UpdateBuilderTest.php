@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Leonardocrcst\Tests;
 
-use QueryBuilder\UpdateBuilder;
+use Leonardocrcst\QueryBuilder\UpdateBuilder;
 use PHPUnit\Framework\TestCase;
 
 class UpdateBuilderTest extends TestCase

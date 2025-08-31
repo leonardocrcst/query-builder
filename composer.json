@@ -1,14 +1,29 @@
 {
-  "name": "tipografica/query-builder",
-  "description": "Simple query builder",
+  "name": "leonardocrcst/query-builder",
+  "description": "A lightweight query builder for PHP 8.4+",
+  "type": "library",
+  "keywords": ["php", "query builder", "database"],
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Leonardo Cruz Costa",
+      "email": "leikovsk@hotmail.com"
+    }
+  ],
   "autoload": {
     "psr-4": {
-      "QueryBuilder\\": "src/",
-      "Tests\\": "tests/"
+      "Leonardocrcst\\QueryBuilder\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Leonardocrcst\\Tests\\": "tests/"
     }
   },
   "require": {
-    "php": "^8.4"
+    "php": ">=8.3"
   },
   "require-dev": {
     "phpunit/phpunit": "12.3.7"

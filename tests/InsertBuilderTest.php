@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Leonardocrcst\Tests;
 
-use QueryBuilder\InsertBuilder;
+use Leonardocrcst\QueryBuilder\InsertBuilder;
 use PHPUnit\Framework\TestCase;
 
 class InsertBuilderTest extends TestCase

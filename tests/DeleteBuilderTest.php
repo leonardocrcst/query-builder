@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Leonardocrcst\Tests;
 
-use QueryBuilder\DeleteBuilder;
+use Leonardocrcst\QueryBuilder\DeleteBuilder;
 use PHPUnit\Framework\TestCase;
 
 class DeleteBuilderTest extends TestCase
