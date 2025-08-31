@@ -3,6 +3,7 @@
 namespace Leonardocrcst\Tests;
 
 use Leonardocrcst\QueryBuilder\QueryBuilder;
+use Leonardocrcst\QueryBuilder\UpdateBuilder;
 use PHPUnit\Framework\TestCase;
 
 class QueryBuilderTest extends TestCase
@@ -28,5 +29,15 @@ class QueryBuilderTest extends TestCase
         $builder = new QueryBuilder('table');
         $query = $builder->delete('id', [1,2,'test']);
         $this->assertEquals('DELETE FROM table WHERE id IN ("1", "2", "test")', (string) $query);
+    }
+
+    public function testUpdateQuery(): void
+    {
+        $builder = new QueryBuilder('table');
+        $update = $builder->update();
+        $update->value('name', 'test', 'id', 1);
+        $update->value('name', 'another test', 'id', 2);
+
+        $this->assertEquals("UPDATE table SET name = CASE id WHEN '1' THEN 'test' WHEN '2' THEN 'another test' ELSE name END WHERE id IN ('1', '2')", (string) $update);
     }
 }

@@ -27,13 +27,13 @@ readonly class QueryBuilder
         return $insert;
     }
 
-    public function update(): void
+    public function update(): UpdateBuilder
     {
-
+        return new UpdateBuilder($this->table);
     }
 
     public function delete(string $column, array $matches): DeleteBuilder
     {
-        return new DeleteBuilder($this->table)->value($column, $matches);
+        return (new DeleteBuilder($this->table))->value($column, $matches);
     }
 }
