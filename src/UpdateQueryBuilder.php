@@ -2,6 +2,8 @@
 
 namespace Leonardocrcst\QueryBuilder;
 
+use Leonardocrcst\QueryBuilder\Utils\Formatter;
+
 class UpdateQueryBuilder
 {
     private array $values = [];
@@ -17,7 +19,12 @@ class UpdateQueryBuilder
         if (!isset($this->values[$column])) {
             $this->values[$column] = [" = CASE $caseColumn"];
         }
-        $this->values[$column][] = "WHEN '$whenValue' THEN '$value'";
+        //$this->values[$column][] = "WHEN '$whenValue' THEN '$value'";
+        $this->values[$column][] = sprintf(
+            "WHEN %s THEN %s",
+            Formatter::formatValue($whenValue),
+            Formatter::formatValue($value)
+        );
         $this->wheres[$caseColumn][] = $whenValue;
     }
 
@@ -46,7 +53,7 @@ class UpdateQueryBuilder
     {
        $where = [];
        foreach ($this->wheres as $column => $values) {
-           $where[] = "$column IN ('" . implode("', '", array_unique($values)) . "')";
+           $where[] = "$column IN (" . implode(", ", array_unique($values)) . ")";
        }
        return implode(' AND ', $where);
     }
