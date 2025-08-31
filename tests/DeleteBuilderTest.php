@@ -12,6 +12,6 @@ class DeleteBuilderTest extends TestCase
         $builder = new DeleteQueryBuilder('table');
         $builder->value('id', [1,2,'test']);
 
-        $this->assertEquals('DELETE FROM table WHERE id IN ("1", "2", "test")', (string) $builder);
+        $this->assertEquals("DELETE FROM table WHERE id IN (1, 2, 'test')", (string) $builder);
     }
 }

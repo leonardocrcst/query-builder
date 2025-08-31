@@ -2,6 +2,8 @@
 
 namespace Leonardocrcst\QueryBuilder;
 
+use Leonardocrcst\QueryBuilder\Utils\Formatter;
+
 class DeleteQueryBuilder
 {
     private string $column;
@@ -16,8 +18,8 @@ class DeleteQueryBuilder
     {
         $this->column = $column;
         $this->values = sprintf(
-            '"%s"',
-            implode('", "', $values)
+            '%s',
+            implode(', ', Formatter::formatValue($values))
         );
         return $this;
     }

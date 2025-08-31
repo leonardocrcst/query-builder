@@ -13,7 +13,7 @@ class InsertBuilderTest extends TestCase
         $insert->value('id', 1);
         $insert->value('name', 'test');
 
-        $this->assertEquals("INSERT INTO table (id, name) VALUES ('1', 'test')", (string) $insert);
+        $this->assertEquals("INSERT INTO table (id, name) VALUES (1, 'test')", (string) $insert);
     }
 
     public function testInsertQueryBuilderWithMultipleRows(): void
@@ -24,6 +24,6 @@ class InsertBuilderTest extends TestCase
         $insert->value('id', 2, 1);
         $insert->value('name', 'another test', 1);
 
-        $this->assertEquals("INSERT INTO table (id, name) VALUES ('1', 'test'), ('2', 'another test')", (string) $insert);
+        $this->assertEquals("INSERT INTO table (id, name) VALUES (1, 'test'), (2, 'another test')", (string) $insert);
     }
 }
