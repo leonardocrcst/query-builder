@@ -1,0 +1,21 @@
+volumes:
+  logs:
+    driver: local
+
+services:
+  qbapp:
+    container_name: qbapp
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    working_dir: /var/www
+    command: start
+    environment:
+      docker: "true"
+      PHP_LOG_ERRORS: /var/www/logs/api/php_errors.log
+    ports:
+      - "8080:8081"
+      - "41234:9003"
+    volumes:
+      - .:/var/www
+      - ./logs:/var/www/logs
