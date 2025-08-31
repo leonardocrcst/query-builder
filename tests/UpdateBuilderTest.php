@@ -2,14 +2,14 @@
 
 namespace Leonardocrcst\Tests;
 
-use Leonardocrcst\QueryBuilder\UpdateBuilder;
+use Leonardocrcst\QueryBuilder\UpdateQueryBuilder;
 use PHPUnit\Framework\TestCase;
 
 class UpdateBuilderTest extends TestCase
 {
     public function testUpdateBuilder(): void
     {
-        $builder = new UpdateBuilder('table');
+        $builder = new UpdateQueryBuilder('table');
         $builder->value('name', 'test', 'id', 1);
         $builder->value('name', 'another test', 'id', 2);
 
@@ -18,7 +18,7 @@ class UpdateBuilderTest extends TestCase
 
     public function testUpdateBuilderWithMultipleColumns(): void
     {
-        $builder = new UpdateBuilder('table');
+        $builder = new UpdateQueryBuilder('table');
         $builder->value('name', 'test', 'id', 1);
         $builder->value('value', 1, 'id', 1);
         $builder->value('name', 'another test', 'id', 2);

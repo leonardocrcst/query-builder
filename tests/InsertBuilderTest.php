@@ -2,14 +2,14 @@
 
 namespace Leonardocrcst\Tests;
 
-use Leonardocrcst\QueryBuilder\InsertBuilder;
+use Leonardocrcst\QueryBuilder\InsertQueryBuilder;
 use PHPUnit\Framework\TestCase;
 
 class InsertBuilderTest extends TestCase
 {
     public function testInsertQueryBuilder(): void
     {
-        $insert = new InsertBuilder('table');
+        $insert = new InsertQueryBuilder('table');
         $insert->value('id', 1);
         $insert->value('name', 'test');
 
@@ -18,7 +18,7 @@ class InsertBuilderTest extends TestCase
 
     public function testInsertQueryBuilderWithMultipleRows(): void
     {
-        $insert = new InsertBuilder('table');
+        $insert = new InsertQueryBuilder('table');
         $insert->value('id', 1);
         $insert->value('name', 'test');
         $insert->value('id', 2, 1);

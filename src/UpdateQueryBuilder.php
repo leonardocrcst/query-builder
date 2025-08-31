@@ -2,7 +2,7 @@
 
 namespace Leonardocrcst\QueryBuilder;
 
-class UpdateBuilder
+class UpdateQueryBuilder
 {
     private array $values = [];
     private array $wheres = [];

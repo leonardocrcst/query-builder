@@ -2,7 +2,7 @@
 
 namespace Leonardocrcst\QueryBuilder;
 
-class InsertBuilder
+class InsertQueryBuilder
 {
     private array $rows = [];
 
@@ -11,7 +11,7 @@ class InsertBuilder
     ) {
     }
 
-    public function value(string $column, mixed $value, int $row = 0): InsertBuilder
+    public function value(string $column, mixed $value, int $row = 0): InsertQueryBuilder
     {
         $this->rows[$row][$column] = $value;
         return $this;

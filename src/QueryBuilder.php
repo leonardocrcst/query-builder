@@ -9,14 +9,18 @@ readonly class QueryBuilder
     ) {
     }
 
-    public function select(): void
+    public function select(?array $columns = null): SelectQueryBuilder
     {
-
+        $select = new SelectQueryBuilder($this->table);
+        if (!empty($columns)) {
+            $select->columns = $columns;
+        }
+        return $select;
     }
 
-    public function insert(array $values): InsertBuilder
+    public function insert(array $values): InsertQueryBuilder
     {
-        $insert = new InsertBuilder($this->table);
+        $insert = new InsertQueryBuilder($this->table);
         if (is_numeric(array_keys($values)[0])) {
             foreach ($values as $row => $itens) {
                 foreach ($itens as $key => $value) {
@@ -27,13 +31,13 @@ readonly class QueryBuilder
         return $insert;
     }
 
-    public function update(): UpdateBuilder
+    public function update(): UpdateQueryBuilder
     {
-        return new UpdateBuilder($this->table);
+        return new UpdateQueryBuilder($this->table);
     }
 
-    public function delete(string $column, array $matches): DeleteBuilder
+    public function delete(string $column, array $matches): DeleteQueryBuilder
     {
-        return (new DeleteBuilder($this->table))->value($column, $matches);
+        return new DeleteQueryBuilder($this->table)->value($column, $matches);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Leonardocrcst\QueryBuilder;
 
-class DeleteBuilder
+class DeleteQueryBuilder
 {
     private string $column;
     private string $values;
@@ -12,7 +12,7 @@ class DeleteBuilder
     ) {
     }
 
-    public function value(string $column, array $values): DeleteBuilder
+    public function value(string $column, array $values): DeleteQueryBuilder
     {
         $this->column = $column;
         $this->values = sprintf(
