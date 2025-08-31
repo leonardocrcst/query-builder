@@ -2,7 +2,7 @@
 
 namespace Leonardocrcst\QueryBuilder\Clausules;
 
-class Limit
+class LimitClausule
 {
     public int $limit {
         set => $this->limit = $value;

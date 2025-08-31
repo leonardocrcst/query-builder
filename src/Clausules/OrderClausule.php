@@ -2,7 +2,7 @@
 
 namespace Leonardocrcst\QueryBuilder\Clausules;
 
-class Order
+class OrderClausule
 {
     public ?string $getOrders {
         get {

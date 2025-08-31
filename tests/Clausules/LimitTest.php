@@ -2,16 +2,16 @@
 
 namespace Leonardocrcst\Tests\Clausules;
 
-use Leonardocrcst\QueryBuilder\Clausules\Limit;
+use Leonardocrcst\QueryBuilder\Clausules\LimitClausule;
 use PHPUnit\Framework\TestCase;
 
 class LimitTest extends TestCase
 {
-    private Limit $limit;
+    private LimitClausule $limit;
 
     protected function setUp(): void
     {
-        $this->limit = new Limit();
+        $this->limit = new LimitClausule();
     }
 
     public function testEmptyLimitShouldReturnNull(): void

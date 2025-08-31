@@ -2,21 +2,21 @@
 
 namespace Leonardocrcst\Tests\Clausules;
 
-use Leonardocrcst\QueryBuilder\Clausules\Order;
+use Leonardocrcst\QueryBuilder\Clausules\OrderClausule;
 use PHPUnit\Framework\TestCase;
 
 class OrderTest extends TestCase
 {
     public function testAddSingleOrder(): void
     {
-        $order = new Order();
+        $order = new OrderClausule();
         $order->add('column');
         $this->assertEquals('ORDER BY column asc', $order->getOrders);
     }
 
     public function testAddMultipleOrders(): void
     {
-        $order = new Order();
+        $order = new OrderClausule();
         $order->add('column1');
         $order->add('column2', 'desc');
         $this->assertEquals('ORDER BY column1 asc, column2 desc', $order->getOrders);
@@ -24,7 +24,7 @@ class OrderTest extends TestCase
 
     public function testEmptyOrders(): void
     {
-        $order = new Order();
+        $order = new OrderClausule();
         $this->assertEquals('', $order->getOrders);
     }
 }

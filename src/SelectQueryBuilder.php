@@ -2,13 +2,16 @@
 
 namespace Leonardocrcst\QueryBuilder;
 
-use Leonardocrcst\QueryBuilder\Clausules\Limit;
-use Leonardocrcst\QueryBuilder\Clausules\Order;
+use Leonardocrcst\QueryBuilder\Clausules\LimitClausule;
+use Leonardocrcst\QueryBuilder\Clausules\OrderClausule;
+use Leonardocrcst\QueryBuilder\Clausules\WhereClausule;
 
 class SelectQueryBuilder
 {
-    protected Order $order;
-    protected Limit $limit;
+    protected OrderClausule $order;
+    protected LimitClausule $limit;
+    protected WhereClausule $where;
+
     public array $columns {
         set => $this->columns = $value;
     }
@@ -22,23 +25,24 @@ class SelectQueryBuilder
     public function __construct(
         private readonly string $table
     ) {
-        $this->order = new Order();
-        $this->limit = new Limit();
+        $this->order = new OrderClausule();
+        $this->limit = new LimitClausule();
+        $this->where = new WhereClausule();
     }
 
-    public function setOrder(string $term, string $direction = 'asc'): Order
+    public function setOrder(string $term, string $direction = 'asc'): OrderClausule
     {
         if (empty($this->order)) {
-            $this->order = new Order();
+            $this->order = new OrderClausule();
         }
         $this->order->add($term, $direction);
         return $this->order;
     }
 
-    public function setLimit(int $limit, ?int $offset = null): Limit
+    public function setLimit(int $limit, ?int $offset = null): LimitClausule
     {
         if (empty($this->limit)) {
-            $this->limit = new Limit();
+            $this->limit = new LimitClausule();
         }
         $this->limit->limit = $limit;
         if (!empty($offset)) {
@@ -50,9 +54,10 @@ class SelectQueryBuilder
     public function __toString(): string
     {
         return trim(sprintf(
-            "SELECT %s %s %s %s",
+            "SELECT %s %s %s %s %s",
             $this->getColumns,
             $this->getFrom,
+            $this->where->getWhere,
             $this->order->getOrders,
             $this->limit->getLimit
         ));
