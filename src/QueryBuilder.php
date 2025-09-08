@@ -13,7 +13,9 @@ readonly class QueryBuilder
     {
         $select = new SelectQueryBuilder($this->table);
         if (!empty($columns)) {
-            $select->columns = $columns;
+            foreach ($columns as $column) {
+                $select->addColumn($column);
+            }
         }
         return $select;
     }

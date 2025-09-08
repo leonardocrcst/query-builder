@@ -2,6 +2,7 @@
 
 namespace Leonardocrcst\QueryBuilder\Clausules;
 
+use InvalidArgumentException;
 use Leonardocrcst\QueryBuilder\Types\ExpressionType;
 use Leonardocrcst\QueryBuilder\Types\JoinType;
 
@@ -10,7 +11,7 @@ class JoinClausule
     public array $types = [];
     public array $clausules = [];
 
-    public string $getJoin {
+    public ?string $getJoin {
         get {
             if (empty($this->clausules)) {
                 return null;
@@ -38,10 +39,10 @@ class JoinClausule
         string $onColumn,
         ExpressionType $expressionType,
         string $joinColumn,
-        ExpressionType $type
+        ExpressionType $type = ExpressionType::AND
     ): self {
         if (!in_array($type, ExpressionType::getAndOrTypes())) {
-            throw new \InvalidArgumentException("Tipo inválido ($type->value)");
+            throw new InvalidArgumentException("Invalid type ($type->value)", 500);
         }
         $this->types[] = $type->value;
         $this->clausules[] = sprintf(

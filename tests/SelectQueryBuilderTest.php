@@ -3,6 +3,8 @@
 namespace Leonardocrcst\Tests;
 
 use Leonardocrcst\QueryBuilder\SelectQueryBuilder;
+use Leonardocrcst\QueryBuilder\Types\ExpressionType;
+use Leonardocrcst\QueryBuilder\Types\JoinType;
 use PHPUnit\Framework\TestCase;
 
 class SelectQueryBuilderTest extends TestCase
@@ -15,7 +17,9 @@ class SelectQueryBuilderTest extends TestCase
     public function testBasicSelectWithColumns(): void
     {
         $builder = new SelectQueryBuilder('users');
-        $builder->columns = ['id', 'name'];
+        $builder
+            ->addColumn('id')
+            ->addColumn('name');
         $this->assertEquals('SELECT id, name FROM users', $this->normalizeString($builder));
     }
 
@@ -39,6 +43,18 @@ class SelectQueryBuilderTest extends TestCase
         $builder->setOrder('name', 'desc');
         $builder->setLimit(5);
         $this->assertEquals('SELECT * FROM users ORDER BY name desc LIMIT 5', $this->normalizeString($builder));
+    }
+
+    public function testSelectWithJoin(): void
+    {
+        $builder = new SelectQueryBuilder('users');
+        $builder->addColumn('name', 'name_alias');
+        $join = $builder->setJoin(JoinType::LEFT, 'profile');
+        $join->add('id', ExpressionType::EQUALS, 'user_id');
+        $this->assertEquals(
+            'SELECT name AS name_alias FROM users LEFT JOIN `profile` ON `users`.`id` = `profile`.`user_id`',
+            $this->normalizeString($builder)
+        );
     }
 
     private function normalizeString(string $string): string
