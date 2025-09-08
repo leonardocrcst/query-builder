@@ -31,4 +31,12 @@ enum ExpressionType: string
             self::IS_NOT_NULL,
         ];
     }
+
+    public static function getAndOrTypes(): array
+    {
+        return [
+            self::AND,
+            self::OR,
+        ];
+    }
 }
