@@ -30,6 +30,11 @@ class SelectQueryBuilder
         }
     }
 
+    public WhereClausule $whereClausule {
+        set => $this->where = $value;
+        get => $this->where;
+    }
+
     protected string $getFrom {
         get => "FROM $this->table";
     }
